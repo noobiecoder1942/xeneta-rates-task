@@ -1,15 +1,18 @@
 import psycopg
 from psycopg.rows import dict_row
+from flask import current_app
 
-user = "postgres"
-password = "ratestask"
-port = "5432"
-dbname = "postgres"
+def get_connection_string():
+    USER = current_app.config['DB_USER']
+    PASSWORD = current_app.config['DB_PASSWORD']
+    PORT = current_app.config['DB_PORT']
+    NAME = current_app.config['DB_NAME']
 
-CONNECTION_STRING = f"postgresql://{user}:{password}@localhost:{port}/{dbname}"
+    CONNECTION_STRING = f"postgresql://{USER}:{PASSWORD}@localhost:{PORT}/{NAME}"
+    return CONNECTION_STRING
 
 def get_connection():
-    return psycopg.connect(CONNECTION_STRING)
+    return psycopg.connect(get_connection_string())
 
 def get_rows(query, params=None):
     with get_connection() as conn:
