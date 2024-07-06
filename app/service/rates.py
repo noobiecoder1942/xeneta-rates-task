@@ -1,7 +1,7 @@
 from typing import List
 from flask import current_app
-from db.queries import get_ports_from_region_query, get_average_rates_query
-from db.database import get_rows
+from app.db.queries import get_ports_from_region_query, get_average_rates_query
+from app.db.database import get_rows
 
 def isRegion(slug):
     return not (len(slug) == 5 and slug.isupper())
