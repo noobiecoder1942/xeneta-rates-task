@@ -1,8 +1,8 @@
-from flask import Flask, request, jsonify
 import logging
+from configparser import ConfigParser
+from flask import Flask, request, jsonify
 from app.service.rates import get_average_rates
 from app.utils.data_validation import validate_request
-from configparser import ConfigParser
 
 config = ConfigParser()
 config.read('config.ini')
@@ -11,6 +11,24 @@ logging.basicConfig(level = int(config['DEFAULT']['LOG_LEVEL']))
 logger = logging.getLogger(__name__)
 
 def create_app():
+    """
+    Creates and configures the Flask application.
+
+    Routes:
+    - `/`: A simple route that returns a welcome message.
+    - `/healthcheck`: A route to check the health status of the service.
+    - `/rates`: A route to get average rates between given dates for specified origin 
+      and destination ports/regions. Accepts `GET` requests with the following query parameters:
+        - `date_from`: The start date for the rate query.
+        - `date_to`: The end date for the rate query.
+        - `origin`: The origin port code or region slug.
+        - `destination`: The destination port code or region slug.
+
+    Returns:
+    -------
+    app : Flask
+        The configured Flask application.
+    """
     app = Flask(__name__)
     app.config["JSONIFY_PRETTYPRINT_REGULAR"] = bool(config['DEFAULT']['PRETTY_PRINT'])
     app.config['DATE_FORMAT'] = config['DEFAULT']['DATE_FORMAT']
@@ -34,12 +52,15 @@ def create_app():
         origin = request.args.get('origin')
         destination = request.args.get("destination")
 
-        logger.info(f"Request params:\ndate_from: {date_from}\ndate_to: {date_to}\norigin: {origin}\ndestination: {destination}")
-        
+        logger.info(
+            f"Request params:\ndate_from: {date_from}\n"
+            f"date_to: {date_to}\n"
+            f"origin: {origin}\n"
+            f"destination: {destination}"
+        )
         validate_request(date_from, date_to, origin, destination)
 
         average_rates = get_average_rates(date_from, date_to, origin, destination)
         logger.info(f"Response: {average_rates}")
         return jsonify(average_rates)
-    
     return app
