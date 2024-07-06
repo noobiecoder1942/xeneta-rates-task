@@ -36,4 +36,5 @@ get_average_rates_query = """
     LEFT JOIN price_series ps1
     ON ds1.day = ps1.day
     GROUP BY ds1.day
+    ORDER BY ds1.day;
 """
