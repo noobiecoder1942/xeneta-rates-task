@@ -21,3 +21,35 @@ Solution to Xeneta's Rates Task Challenge
 ## Approximate Time Spent
 * Core (Flask App and SQL query): 4 hours
 * Extras (PEP8 style checks, Unit tests, Docker and Docker Compose): 4 hours
+
+## Data definition
+
+A database dump is provided that includes the following information:
+
+### Ports
+
+Information about ports, including:
+
+* 5-character port code
+* Port name
+* Slug describing which region the port belongs to
+
+### Regions
+
+A hierarchy of regions, including:
+
+* Slug - a machine-readable form of the region name
+* The name of the region
+* Slug describing which parent region the region belongs to
+
+Note that a region can have both ports and regions as children, and the region
+tree does not have a fixed depth.
+
+### Prices
+
+Individual daily prices between ports, in USD.
+
+* 5-character origin port code
+* 5-character destination port code
+* The day for which the price is valid
+* The price in USD
