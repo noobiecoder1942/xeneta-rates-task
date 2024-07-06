@@ -9,6 +9,10 @@ Solution to Xeneta's Rates Task Challenge
 * From your browser make a request as such:
 ```http://localhost:3000/rates?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=scandinavia```
 
+### Instructions to run unit test suite
+
+* While the containers are running (following above steps), run the following: ```sudo docker compose exec flask-app pytest```
+
 ## My Development Environment
 * Ubuntu 22.04.4 LTS
 * Docker 27.0.3
@@ -16,4 +20,4 @@ Solution to Xeneta's Rates Task Challenge
 
 ## Approximate Time Spent
 * Core (Flask App and SQL query): 4 hours
-* Extras (PEP8 style checks, Unit test, Docker and Docker Compose): 4 hours
+* Extras (PEP8 style checks, Unit tests, Docker and Docker Compose): 4 hours
