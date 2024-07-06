@@ -1,0 +1,13 @@
+# version: "3.10"
+services:
+  flask-app:
+    build: ./flask-app/
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+
+  database:
+    build: ./database/
+    ports:
+      - "5432:5432"
