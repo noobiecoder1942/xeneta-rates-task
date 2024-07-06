@@ -23,7 +23,7 @@ def is_date_valid(date_str: str) -> bool:
         flag = False
     return flag
 
-def validate_request(date_from, date_to, origin, destination):
+def validate_request(date_from: str, date_to: str, origin: str, destination: str):
     """
     Validate the request parameters for querying average rates.
 

@@ -1,3 +1,4 @@
+from typing import Optional, Union, Tuple, Dict, List
 import psycopg
 from psycopg.rows import dict_row
 from flask import current_app
@@ -16,7 +17,6 @@ def get_connection_string():
     host = current_app.config['DB_HOST']
     port = current_app.config['DB_PORT']
     name = current_app.config['DB_NAME']
-    
     connection_string = f"postgresql://{user}:{password}@{host}:{port}/{name}"
     return connection_string
 
@@ -31,7 +31,7 @@ def get_connection():
     """
     return psycopg.connect(get_connection_string())
 
-def get_rows(query, params=None):
+def get_rows(query: str, params: Optional[Union[Tuple, Dict]] = None) -> List:
     """
     Execute a SQL query and fetch all rows.
 

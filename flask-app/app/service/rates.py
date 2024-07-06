@@ -1,9 +1,9 @@
-from typing import List
+from typing import Dict, List
 from flask import current_app
 from app.db.queries import get_ports_from_region_query, get_average_rates_query
 from app.db.database import get_rows
 
-def is_region(slug):
+def is_region(slug: str) -> bool:
     """
     Determine if the given slug represents a region.
 
@@ -44,7 +44,7 @@ def get_all_ports_in_region(region_slug: str) -> List[str]:
         ports = [region_slug]
     return ports
 
-def get_average_rates(date_from, date_to, origin, destination):
+def get_average_rates(date_from: str, date_to: str, origin: str, destination: str) -> List:
     """
     Calculate the average rates between ports or regions over a specified date range.
 
@@ -74,7 +74,7 @@ def get_average_rates(date_from, date_to, origin, destination):
         average_rates.append(convert_row_to_dict(row))
     return average_rates
 
-def convert_row_to_dict(row):
+def convert_row_to_dict(row: Dict) -> Dict:
     """
     Convert a database row to a dictionary with formatted date and average price.
 
