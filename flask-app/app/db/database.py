@@ -13,10 +13,10 @@ def get_connection_string():
     """
     user = current_app.config['DB_USER']
     password = current_app.config['DB_PASSWORD']
+    host = current_app.config['DB_HOST']
     port = current_app.config['DB_PORT']
     name = current_app.config['DB_NAME']
-    host = "database"
-
+    
     connection_string = f"postgresql://{user}:{password}@{host}:{port}/{name}"
     return connection_string
 

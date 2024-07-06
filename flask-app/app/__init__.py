@@ -34,6 +34,7 @@ def create_app():
     app.config['DATE_FORMAT'] = config['DEFAULT']['DATE_FORMAT']
     app.config['DB_USER'] = config['DATABASE']['USER']
     app.config['DB_PASSWORD'] = config['DATABASE']['PASSWORD']
+    app.config['DB_HOST'] = config['DATABASE']['HOST']
     app.config['DB_PORT'] = config['DATABASE']['PORT']
     app.config['DB_NAME'] = config['DATABASE']['NAME']
 
