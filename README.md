@@ -8,6 +8,8 @@ Solution to Xeneta's Rates Task Challenge
 ```sudo docker compose up --build```
 * From your browser make a request as such:
 ```http://localhost:3000/rates?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=scandinavia```
+* If you prefer ```curl```, fire up a terminal and make a request as such:
+```curl "http://localhost:3000/rates?date_from=2016-01-01&date_to=2016-01-10&origin=CNSGH&destination=north_europe_main"```
 
 ### Instructions to run unit test suite
 
