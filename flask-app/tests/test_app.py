@@ -50,3 +50,10 @@ def test_rates_endpoint_sad_path(client):
     response_data = response.data.decode("utf-8")
     assert "Bad Request" in response_data
     assert "Invalid destination argument" in response_data
+
+    malformed_rates_query = "/rates?date_from=2016-01-02&date_to=2016-01-01&origin=china_main"
+    response = client.get(malformed_rates_query)
+    assert response.status_code == 400
+    response_data = response.data.decode("utf-8")
+    assert "Bad Request" in response_data
+    assert "Invalid date range: date_to must be later than date_from" in response_data
